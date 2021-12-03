@@ -1,48 +1,86 @@
 #pragma once
 #include <assert.h> // для assert()
+#include <cstdlib> // для функций rand() и srand()
+#include <iostream>
 
 template <class T>
 class Array
 {
 private:
-    int m_length;
-    T* m_data;
+    int sizeRows;
+    int sizeColumns;
+    T **arrayData;
 
 public:
     Array()
     {
-        m_length = 0;
-        m_data = nullptr;
+        sizeRows = 0;
+        sizeColumns = 0;
+        arrayData = nullptr;
     }
-
-    Array(int length)
+    Array(T** arr)
     {
-        m_data = new T[length];
-        m_length = length;
+        Array<T>::sizeRows = arr.getSizeRows();
+        Array<T>::sizeColumns = arr.getSizeColumns();
+        Array<T>::arrayData = arr;
     }
+    Array(int sizeRows, int sizeColumns)
+    {
+        Array<T>::sizeRows = sizeRows;
+        Array<T>::sizeColumns = sizeColumns;
+        Array<T>::arrayData = new T* [sizeRows];
+        for (int count = 0; count < sizeRows; count++)
+        {
+            arrayData[count] = new T[sizeColumns];
+        }
+        for (int i = 0; i < sizeRows; i++)
+        {
+            for (int j = 0; j < sizeColumns; j++)
+            {
+                std::cout << "a[" << i << "][" << j << "]=";
+                std::cin >> arrayData[i][j];
+            }
+        }
+    }
+    Array(const Array& objArr)
+    {
+        //std::cout << "constructor copy run" << std::endl;
+        Array::sizeRows = objArr.countRows;
+        Array::sizeColumns = objArr.countColumns;
+        Array::arrayData = NULL;
+        if (objArr.arrayData)
+        {
+            arrayData = new int* [sizeRows];
+            for (int count = 0; count < sizeRows; count++)
+            {
+                arrayData[count] = new int[sizeColumns];
+            }
 
+            for (int i = 0; i < sizeRows; i++)
+            {
+                for (int j = 0; j < sizeColumns; j++)
+                {
+                    arrayData[i][j] = objArr.arrayData[i][j];
+                }
+            }
+        }
+    }
+    T getElement(int, int);
+    int getSizeColumns();
+    int getSizeRows();
+    void viewArray();
+    T getMaxElement();
+    T average();
+    Array operator+(Array&);
+    
     ~Array()
     {
-        delete[] m_data;
+        for (int i = 0; i < sizeRows; i++)
+        {
+            delete[] arrayData[i];
+        }
+        delete[] arrayData;
     }
-
-    void Erase()
-    {
-        delete[] m_data;
-        // Присваиваем значение nullptr для m_data, чтобы на выходе не получить висячий указатель!
-        m_data = nullptr;
-        m_length = 0;
-    }
-
-
-    T& operator[](int index)
-    {
-        assert(index >= 0 && index < m_length);
-        return m_data[index];
-    }
-
-    // Длина массива всегда является целочисленным значением, она не зависит от типа элементов массива
-    int getLength();
-
+ 
 };
 

@@ -9,7 +9,8 @@
 // Две размерности, указатель на элементы
 // методы:
 // Вывести на экран, 
-// найти максимум и среднее значение элементов	
+// найти максимум 
+// и среднее значение элементов	
 // перегружаемые операции:
 // + (сложение двух матриц), 
 // < (каждый элемент первой матрицы меньше соответствующего элемента второй)
@@ -21,8 +22,29 @@
 
 int main()
 {
-    std::cout << "Hello World!\n";
-	Array<int> intArray(10);
+	Array<int> intArray(2,2);
+	intArray.viewArray();
+	int maxEl = intArray.getMaxElement();
+	std::cout << "maxEl = " << maxEl << std::endl;
+	double aver = intArray.average();
+	std::cout << "aver = " << aver << std::endl;
+
+	Array<int> intArray1(2, 2);
+	intArray1.viewArray();
+
+	Array<int> intArray2(intArray + intArray1);
+	//Array<double> doubArray(2, 2);
+	//doubArray.viewArray();
+
+
+	/*intArray->arrayData = new int* [intArray.getSizeRows()];
+	for (int count1 = 0; count1 < intArray.getSizeRows(); count1++)
+	{
+		intArray[count1] = new int [intArray.getSizeColumns()];
+	
+	}*/
+	
+	/*Array<int> intArray(10);
 	Array<double> doubleArray(10);
 
 	for (int count = 0; count < intArray.getLength(); ++count)
@@ -32,7 +54,7 @@ int main()
 	}
 
 	for (int count = intArray.getLength() - 1; count >= 0; --count)
-		std::cout << intArray[count] << "\t" << doubleArray[count] << '\n';
+		std::cout << intArray[count] << "\t" << doubleArray[count] << '\n';*/
 
 	return 0;
 
