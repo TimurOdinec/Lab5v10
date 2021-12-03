@@ -71,7 +71,7 @@ public:
     void viewArray();
     T getMaxElement();
     T average();
-    Array operator+(Array&);
+    //Array operator+(Array&);
     
     ~Array()
     {

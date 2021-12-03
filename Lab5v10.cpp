@@ -32,7 +32,7 @@ int main()
 	Array<int> intArray1(2, 2);
 	intArray1.viewArray();
 
-	Array<int> intArray2(intArray + intArray1);
+	//Array<int> intArray2(intArray + intArray1);
 	//Array<double> doubArray(2, 2);
 	//doubArray.viewArray();
 

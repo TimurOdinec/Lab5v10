@@ -57,16 +57,16 @@ T Array<T>::average()
     T result = sum / (sizeRows * sizeColumns);
     return result;
 }
-template <typename T>
-Matrix Matrix::operator+(const Matrix& n)
-{
-    Matrix result(*this);
-    for (int i = 0; i < 3; i++)
-    {
-        for (int j = 0; j < 3; j++)
-        {
-            result.aMas[i][j] += n.aMas[i][j];
-        }
-    }
-    return result;
-}
+//template <typename T>
+//Matrix Matrix::operator+(const Matrix& n)
+//{
+//    Matrix result(*this);
+//    for (int i = 0; i < 3; i++)
+//    {
+//        for (int j = 0; j < 3; j++)
+//        {
+//            result.aMas[i][j] += n.aMas[i][j];
+//        }
+//    }
+//    return result;
+//}
